@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2chp38r7ve7j"]
+
+[ext_resource type="Script" path="res://scenes/projectile_spawner.gd" id="1_2iaeo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_obwjt"]
+radius = 297.889
+
+[node name="ProjectileSpawner" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_2iaeo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_obwjt")
+
+[node name="SpawningPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

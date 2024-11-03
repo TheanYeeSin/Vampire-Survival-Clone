@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://c7ahnd3gdqgce"]
+
+[ext_resource type="Script" path="res://scenes/disappear.gd" id="1_231jg"]
+[ext_resource type="Texture2D" uid="uid://drgrx6yysakn" path="res://assets/Desappearing (96x96).png" id="1_fodlo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypg1x"]
+atlas = ExtResource("1_fodlo")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6fg5"]
+atlas = ExtResource("1_fodlo")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuubm"]
+atlas = ExtResource("1_fodlo")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6gyd"]
+atlas = ExtResource("1_fodlo")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2vlr"]
+atlas = ExtResource("1_fodlo")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gbn4"]
+atlas = ExtResource("1_fodlo")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7wd5"]
+atlas = ExtResource("1_fodlo")
+region = Rect2(576, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m8xxn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypg1x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6fg5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kuubm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6gyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2vlr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gbn4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7wd5")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mxput"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_231jg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m8xxn")
+autoplay = "default"
+frame = 6
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mxput")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
